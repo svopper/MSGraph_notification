@@ -5,13 +5,13 @@ _Oprettet 22/2/22_
 
 ## Baggrund
 
-Dette projekt er en PoC af dims der rapporterer opkaldshistorik ind i DEALOG 3.0. Det kræves at [ny webhook subscription sættes op hver 3. dag](https://portal.azure.com/#@danskerhverv.org/resource/subscriptions/0b659584-ca18-43df-9bc1-bdc0b901b241/resourceGroups/DE-Playground/providers/Microsoft.Web/sites/msgraph-callrecord-hook/appServices) grundes MS Graph-begrænsning. Denne subscription rapporterer til endpoint - i dette tilfælde en Azure Function.
+Dette projekt er en PoC af dims der rapporterer opkaldshistorik ind i DEALOG 3.0. Det kræves at ny webhook subscription sættes op hver 3. dag grundes MS Graph-begrænsning. Denne subscription rapporterer til endpoint - i dette tilfælde en Azure Function.
 
 ```csharp
     var subscription = new Subscription // Properties: https://docs.microsoft.com/en-us/graph/api/resources/subscription?view=graph-rest-1.0#properties
     {
         ChangeType = "created",
-        NotificationUrl = "URL TO NOTIFICATION", // url til Azure Function
+        NotificationUrl = "webhook URL", // url til Azure Function
         Resource = "communications/callRecords",
         ExpirationDateTime = DateTimeOffset.Parse("2022-02-24T18:23:45.9356913Z"),
         ClientState = "secretClientValue",
